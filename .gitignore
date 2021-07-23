@@ -1,0 +1,17 @@
+.DS_Store
+*.aux
+*.bbl
+*.bcf
+*.blg
+*.loa
+*.lof
+*.log
+*.lot
+*.out
+*.gz
+*.tgz
+*.run.xml
+*.tdo
+*.toc
+*.synctex.gz
+thesis_literature_review.pdf

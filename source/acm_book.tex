@@ -1,0 +1,52 @@
+\documentclass[11pt, titlepage]{book}
+
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+
+\usepackage{tabularx}
+\usepackage[textsize=small,colorinlistoftodos]{todonotes}
+\usepackage[ruled]{algorithm2e} % For algorithms
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{titletoc}
+\usepackage{array,booktabs,amsmath,graphicx,fancyvrb,tabularx, longtable}
+\usepackage[tt=false, type1=true]{libertine}
+\usepackage[varqu]{zi4}
+\usepackage[libertine]{newtxmath}
+\usepackage[tableposition=top]{caption}
+\usepackage{hypdoc}
+\usepackage{mdframed}
+\usepackage{ifthen}
+\usepackage{etoolbox}
+\usepackage[title]{appendix}
+\usepackage{caption}
+\usepackage{placeins}
+
+\bibliographystyle{ACM-Reference-Format}
+
+\renewcommand{\algorithmcfname}{ALGORITHM}
+\SetAlFnt{\small}
+\SetAlCapFnt{\small}
+\SetAlCapNameFnt{\small}
+\SetAlCapHSkip{0pt}
+\IncMargin{-\parindent}
+
+\author{Niall Creech}
+
+%TODO Remove this for final book layout
+\usepackage[
+top=1.25in,
+bottom=1.25in,
+left=.75in,
+right=.75in,
+bindingoffset=0in,
+heightrounded,
+]{geometry}
+
+\renewcommand{\headrulewidth}{0.5pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyhf{}
+\fancyhead[RO]{\rightmark}
+\fancyhead[LE]{\leftmark}
+\fancyfoot[C]{\thepage}
+

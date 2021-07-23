@@ -1,0 +1,59 @@
+\subsection{Resource Allocation}
+\label{section:background}
+
+Many different industries involve multi-agent systems where there are
+\textit{resource allocation} problems, with multiple agents' placing demands on
+shared resources, or \textit{task-prioritisation} problems, where multiple
+agents' task requests to other agents compete for prioritisation. There are close-similarities between these problem types in-terms of the algorithms that can be applied. In addition, the similarity of the underlying systems across multiple industries makes research in one area highly relevant to many others. As such, although we focus on applications and research within multi-vehicle systems, many of the insights transfer to other problem domains and industry sectors mentioned previously.
+
+Modelling and coordinating behaviours of actors in
+\textit{vehicle-to-everything (V2X) systems} is essential for autonomous
+driving and interconnected transport management. Information exchange allows
+for vehicles to be more aware of other vehicles \cite{Nothdurft2011}, and to
+interact with road infrastructure systems. This means they can make decisions
+with increased safety and greater efficiency \cite{Xie2017a}. A request between
+vehicles may be a composite set of tasks such as providing position and speed
+data, traffic congestion information \cite{Schunemann2010}, traffic light
+status, road-blockages, and so on. Each of these tasks requires the vehicle
+serving the request to dedicate resources to acquiring and aggregating
+information. Each of these tasks also has a varying degree of value to the
+vehicle receiving the data depending on its situation. A vehicle travelling at
+speed may prefer nearby vehicles to provide position and velocity data. When
+vehicles are further away then less immediate factors such as traffic density
+ahead may become more valuable \cite{Rizzo2016,Eiza2015}. A vehicle may receive
+such tasks from many vehicles and must decide how to prioritise and allocate the required resources amongst these competing demands. The interactions can also be highly dynamic. Nearby vehicles may communicate updates at a high frequency, becoming less frequent as they move further away. Interruptions to connectivity can come from buildings, other vehicles, and interference. \cite{BelagalMath2017,Wang2019a}. With each vehicle providing its own set of resources, there is also the possibility of forming an ad-hoc distributed compute platform amongst multiple vehicles, which requires efficient resource allocation to handle the many distributed tasks in the system \cite{Feng2017,Xu2020}. Similar problems arise in UAV and other MANET (Mobile ad-hoc networks) more generally. There may be multiple vehicle-to-vehicle and vehicle-to-ground communications, and restricted energy availability, which needs to be managed effectively \cite{Cui}. The interactions of multiple mobile vehicles is an area where there is a large body of research on artificial intelligence applications \cite{Althamary2019,Tong2019} to develop models and predictive solutions.
+
+V2X systems highlight the key elements of the systems we look to provide a solution for,
+\begin{enumerate}
+	\item {
+		a frequency of incoming composite tasks which require decomposition and prioritisation}
+	\item{
+		the value of each task is dependant on the unknown state of the requester
+		
+	}
+	\item {
+		there are multiple competing tasks demanding resources
+	}
+	\item {
+		these elements vary over time in both value and reliability.
+	}
+\end{enumerate}
+
+Systems such as these are categorisable as \textit{multi-agent resource allocation} \cite{Briola2011} or \textit{dynamic task-scheduling} problems \cite{Shyalika2020}. For these there are established methods that can be applied such as auction protocols and automated negotiation schemes \cite{Beam1997} \cite{Fatima2001, Chevaleyre2005}, e.g. contract-net \cite{Smith1980a} and its more recent extensions \cite{Bozdag2008}. In these, an agent announces the availability of some resource it owns, agents interested in gaining access to the resource make bids, then the resource owner makes the final allocation. Although broadly used in many areas, the limitations become apparent when applied to large-scale and complex systems. 
+
+The first problem occurs due to the \textit{lack of scalability with increased number of participating agents}. When there are many agents bidding or allocating resources, the negotiation process carries a significant overhead. This can delay, or otherwise reduce the optimality of, the overall allocation. Extensions such as concurrent contract-net \cite{Chevaleyre} mitigate some of those effects by extending the negotiation protocol but inherently have the same limitations. 
+
+The second issue comes from the \textit{complexity of resource allocation effects}. The allocation of resources to one agent can positively or negatively impact further agents whose own demands rely on that agents' ability to acquire those resources. In addition, where there are many agents requesting a resource-type, and many that can allocate that resource, finding the optimal distribution of those agents' requests across those resource-allocating agents is a challenging problem. Here \textit{combinatorial auctions} \cite{Vriesde1998,Parkes2000} can help develop more complex allocation strategies in these situations, but with an associated negative impact on the scalability of solutions.   
+
+The longer-term effects of resource allocations can also be modelled through the use of \textit{multi-agent reinforcement learning} \cite{Busoniu2008a} to learn and adapt allocation policies. This helps learn more complex relationships between resource allocation actions. In doing so we can use two main strategies. \textit{Joint action learning} uses algorithms based on Q-learning or deep learning to learn a model for the system as a whole, using all agents' knowledge in the system combined. In \textit{independent action learning}, each agent learns independently of other agents in the system using only a localised view of the system \cite{Claus}, without coordination. Distributed Q-learning algorithms provide some of the state-of-the-art examples in this area  \cite{Lauer00analgorithm, 4399095}.
+
+Whereas we can best solve the problem of global resource allocation optimisation through joint-action learning, this becomes computationally intractable as the number of agents and states increases, so suffers from the scalability problem. Alternatively, independent action learning avoids the costs of intercommunication with other agents so is more scalable, but without a system-wide view does not optimise as well. This is due to the lack of observability of other agents' strategies, and risks becoming stuck in locally-optimal solutions. \cite{Fatima2001,Hernandez-Leal2019a, Shyalika2020}. 
+
+Our approach is to extend the localised view by enabling a \textit{parent agent}, the resource-requesting agent, to feedback to the \textit{child agent}, the resource-allocating agent, the value of the child agents' allocation strategy to the parents' broader goals. A child agent learns the value of its allocation strategy across many parent agents as part of each parents' overall set of resource demands or tasks. This passes information to the child agent on how its allocation may have effected other child agents' resource allocations more broadly in the system. Through this extension of a localised learning approach we are able to model the complex outcomes involved in multiple resource allocations in an agent system. However, as each agents' view of the system is still constrained, it scales well to large systems. 
+
+
+
+
+
+
+
